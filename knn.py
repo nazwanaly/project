@@ -38,45 +38,34 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 
-# Gaya monokrom: putih, abu-abu, dan hitam.
+# Tema biru: tampilan lebih segar, tetap sederhana dan nyaman di HP.
 st.markdown("""
 <style>
-    .stApp { background: #f5f5f5; color: #202020; }
-    .block-container { max-width: 860px; padding-top: 2.1rem; padding-bottom: 2.5rem; }
-    h1 { font-size: 1.8rem !important; font-weight: 700 !important; color: #202020; }
-    h2, h3 { color: #262626; }
+    :root { --blue: #2563eb; --navy: #102a56; --pale: #eff6ff; }
+    .stApp { background: linear-gradient(180deg, #f2f7ff 0%, #ffffff 330px); color: #172b4d; }
+    .block-container { max-width: 900px; padding-top: 1.6rem; padding-bottom: 2.5rem; }
+    h1 { font-size: 2rem !important; font-weight: 800 !important; color: #102a56 !important; letter-spacing: -.035em; }
+    h2, h3 { color: #163b70 !important; }
     [data-testid="stHeader"] { background: transparent; }
-    div[data-testid="stForm"] {
-        background: #ffffff;
-        border: 1px solid #d5d5d5;
-        border-radius: 5px;
-        padding: 1.25rem;
-    }
-    div.stButton > button, div[data-testid="stFormSubmitButton"] button {
-        background: #292929;
-        color: #ffffff;
-        border: 1px solid #292929;
-        border-radius: 4px;
-        min-height: 42px;
-        font-weight: 600;
-    }
-    div.stButton > button:hover, div[data-testid="stFormSubmitButton"] button:hover {
-        background: #444444;
-        border-color: #444444;
-        color: #ffffff;
-    }
-    [data-testid="stMetric"] { background: #fff; border: 1px solid #ddd; padding: 12px; }
-    hr { border-color: #d2d2d2; }
-    .eyebrow { font-size: .76rem; letter-spacing: .12em; font-weight: 700; color: #555; }
-    .note { color: #595959; font-size: .84rem; line-height: 1.6; }
-    div[data-testid="stExpander"] { border: 1px solid #d6d6d6; border-radius: 4px; }
-    label { color: #292929 !important; }
+    .eyebrow { display:inline-block; color:#1d4ed8; background:#dbeafe; border:1px solid #bfdbfe; padding:6px 10px; border-radius:999px; font-size:.72rem; letter-spacing:.09em; font-weight:800; }
+    div[data-testid="stForm"] { background:#fff; border:1px solid #dbeafe; border-radius:16px; padding:1.25rem; box-shadow:0 8px 26px rgba(30,64,175,.07); }
+    div.stButton > button, div[data-testid="stFormSubmitButton"] button { background:#2563eb; color:#fff; border:1px solid #2563eb; border-radius:10px; min-height:44px; font-weight:700; transition:all .15s ease; }
+    div.stButton > button:hover, div[data-testid="stFormSubmitButton"] button:hover { background:#1d4ed8; border-color:#1d4ed8; color:#fff; }
+    [data-testid="stMetric"] { background:#fff; border:1px solid #dbeafe; border-radius:12px; padding:14px; }
+    hr { border-color:#dbeafe; }
+    .note { color:#526782; font-size:.84rem; line-height:1.65; background:#f8fbff; border:1px solid #e1ecfb; border-radius:12px; padding:14px 16px; }
+    div[data-testid="stExpander"] { background:#fff; border:1px solid #dbeafe; border-radius:12px; }
+    label { color:#243f65 !important; font-weight:600 !important; }
+    [data-baseweb="select"] > div, [data-testid="stNumberInput"] input { border-radius:9px; }
+    .stCaption, [data-testid="stCaptionContainer"] { color:#64748b; }
+    @media (max-width: 640px) { .block-container { padding:1rem .9rem 2rem; } h1 { font-size:1.65rem !important; } div[data-testid="stForm"] { padding:.9rem; } }
 </style>
 """, unsafe_allow_html=True)
 
 st.markdown('<div class="eyebrow">SISTEM PENDUKUNG KEPUTUSAN</div>', unsafe_allow_html=True)
 st.title("Prediksi Risiko Diabetes")
 st.caption("Klasifikasi menggunakan algoritma K-Nearest Neighbors (KNN)")
+st.markdown("Masukkan karakteristik pasien untuk melihat hasil klasifikasi berdasarkan data latihan.")
 st.divider()
 
 st.subheader("Input Data Pasien")
@@ -119,10 +108,10 @@ if submit:
     st.divider()
     st.subheader("Hasil Klasifikasi")
     st.markdown(
-        f"""<div style="background:#ededed;border:1px solid #bcbcbc;border-left:5px solid #292929;
-        padding:16px 18px;margin:8px 0 14px;">
-        <div style="font-size:12px;letter-spacing:.08em;color:#555;text-transform:uppercase;">Hasil prediksi</div>
-        <div style="font-size:25px;font-weight:700;color:#202020;margin-top:5px;">{hasil}</div>
+        f"""<div style="background:linear-gradient(135deg,#eff6ff,#ffffff);border:1px solid #bfdbfe;border-left:5px solid #2563eb;border-radius:12px;
+        padding:18px 20px;margin:8px 0 14px;">
+        <div style="font-size:12px;letter-spacing:.08em;color:#1d4ed8;text-transform:uppercase;">Hasil prediksi</div>
+        <div style="font-size:25px;font-weight:700;color:#102a56;margin-top:5px;">{hasil}</div>
         </div>""",
         unsafe_allow_html=True
     )
